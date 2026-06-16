@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vismaya Joseph | Cloud & ML Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0f1e;
+      --bg2: #111827;
+      --card: #1a2235;
+      --accent: #3b82f6;
+      --accent2: #06b6d4;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #1e293b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.2rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 60% 40%, rgba(59,130,246,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(6,182,212,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-content { max-width: 700px; text-align: center; position: relative; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: var(--accent2);
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      margin-bottom: 1.5rem; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 540px; margin: 0 auto 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem; border-radius: 0.5rem;
+      font-size: 0.95rem; font-weight: 500;
+      text-decoration: none; transition: all 0.2s; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent); color: white;
+      border: none;
+    }
+    .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent2);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem; font-weight: 700; margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .about-text { color: var(--muted); line-height: 1.8; }
+    .about-text p { margin-bottom: 1rem; }
+    .stats { display: flex; flex-direction: column; gap: 1rem; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 0.75rem; padding: 1.25rem;
+    }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 0.75rem; padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .skill-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .skill-desc { font-size: 0.8rem; color: var(--muted); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; gap: 1.5rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .project-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; }
+    .project-links { display: flex; gap: 0.75rem; }
+    .project-link {
+      color: var(--muted); text-decoration: none; font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); }
+    .project-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      color: var(--accent2); font-size: 0.75rem; font-weight: 500;
+      padding: 0.2rem 0.65rem; border-radius: 1rem;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 0.75rem; padding: 1.25rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .cert-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .cert-org { font-size: 0.8rem; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 2.5rem; text-align: center;
+    }
+    .contact-box p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.25rem; border-radius: 0.5rem;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--text); text-decoration: none; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      color: var(--muted); font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VJ</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Open to Internships & Full-time Roles</div>
+    <h1>Hi, I'm <span>Vismaya Joseph</span></h1>
+    <p>Final year BTech CSE student passionate about Cloud Computing and Machine Learning. Building real solutions with AWS, Python, and AI.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View My Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="section-title">Who I Am</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a final year Computer Science student at Mar Baselios Institute of Technology and Science (MBITS), Kerala, with a CGPA of 8.5+.</p>
+      <p>I'm passionate about Cloud Computing and have completed 12 hands-on labs through AWS SimuLearn, working with real AWS services like EC2, S3, Lambda, RDS, and more.</p>
+      <p>I built AgroCarbon Pulse AI — a machine learning platform for Kerala farmers that uses Random Forest models to predict crop yields and market prices, deployed on Streamlit Cloud with a Supabase PostgreSQL backend.</p>
+      <p>I'm actively seeking internship opportunities in Cloud Computing, DevOps, and Software Development.</p>
+    </div>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-num">8.5+</div>
+        <div class="stat-label">CGPA — BTech CSE</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">12</div>
+        <div class="stat-label">AWS Hands-on Labs Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Real Projects Deployed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <div class="section-title">What I Work With</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Cloud Computing</div>
+      <div class="skill-desc">AWS (EC2, S3, Lambda, RDS, VPC, IAM)</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-desc">ML models, Streamlit apps, automation</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL & Databases</div>
+      <div class="skill-desc">PostgreSQL, Supabase, database design</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">Machine Learning</div>
+      <div class="skill-desc">Scikit-learn, Random Forest, data analysis</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-name">Git & GitHub</div>
+      <div class="skill-desc">Version control, collaboration, open source</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">C & OOP Concepts</div>
+      <div class="skill-desc">Programming fundamentals, Object-Oriented concepts</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">My Work</div>
+  <div class="section-title">Projects</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">🌾 AgroCarbon Pulse AI</div>
+        <div class="project-links">
+          <a href="https://github.com/Vismaya-Joseph/AgroCarbon-Pulse-AI" class="project-link" target="_blank">GitHub →</a>
+        </div>
+      </div>
+      <div class="project-desc">Kerala farming intelligence platform that uses Random Forest ML models to provide crop recommendations, price predictions, and real-time weather-based farming insights for Kerala farmers. Built with Python, Streamlit, Scikit-learn, and Supabase PostgreSQL. Deployed on Streamlit Community Cloud.</div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">OpenWeatherMap API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">🩸 LifeDrop — Blood Donation Platform</div>
+        <div class="project-links">
+          <a href="https://github.com/Vismaya-Joseph/tink-her-hack-3-temp" class="project-link" target="_blank">GitHub →</a>
+          <a href="https://tink-her-hack-3-temp-pi.vercel.app" class="project-link" target="_blank">Live →</a>
+        </div>
+      </div>
+      <div class="project-desc">A blood donation web platform built during a hackathon that connects blood donors with recipients. Features include donor registration, blood group search by location, and emergency blood request forms. Deployed on Vercel.</div>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Vercel</span>
+        <span class="tag">Hackathon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <div class="section-title">Certifications & Programs</div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">AWS SimuLearn: Cloud Practitioner</div>
+        <div class="cert-org">Amazon Web Services — 12 Labs Completed</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">IBM Q2D PEARL Program</div>
+        <div class="cert-org">IBM Innovation Centre — Cloud Computing</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📚</div>
+      <div>
+        <div class="cert-name">AWS Cloud Practitioner Essentials</div>
+        <div class="cert-org">AWS Skill Builder — In Progress</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">BTech Computer Science Engineering</div>
+        <div class="cert-org">MBITS, Kerala — CGPA 8.5+ (2023–2027)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <div class="section-title">Contact Me</div>
+  <div class="contact-box">
+    <p>I'm actively looking for internship opportunities in Cloud Computing and Software Development. Feel free to reach out!</p>
+    <div class="contact-links">
+      <a href="mailto:vismayajoseph18@gmail.com" class="contact-link">📧 Email Me</a>
+      <a href="https://linkedin.com/in/vismaya-joseph-359929290" class="contact-link" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/Vismaya-Joseph" class="contact-link" target="_blank">🐙 GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Vismaya Joseph · 2026</p>
+</footer>
+
+</body>
+</html>
